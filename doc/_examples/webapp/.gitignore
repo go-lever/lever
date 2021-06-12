@@ -1,3 +1,5 @@
 node_modules/
 access.log
 public/
+cert.pem
+key.pem
