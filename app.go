@@ -3,25 +3,27 @@ package lever
 import (
 	"fmt"
 
+	"github.com/go-lever/encore"
 	"github.com/go-lever/lever/config"
 	"github.com/kataras/iris/v12"
 )
 
 type App struct {
 	*iris.Application
-	tlsConfig *tlsConfig
-	devMode bool
+	tlsConfig     *tlsConfig
+	devMode       bool
+	assetRenderer *encore.Renderer
 }
 
-func NewApp() *App{
+func NewApp() *App {
 	return &App{
 		Application: iris.Default(),
-		tlsConfig: newTLSConfig(),
-		devMode: config.DevMode(),
+		tlsConfig:   newTLSConfig(),
+		devMode:     config.DevMode(),
 	}
 }
 
-func (app *App) Run(){
+func (app *App) Run() {
 	if app.devMode {
 		app.runDev()
 	} else {
