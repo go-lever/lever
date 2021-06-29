@@ -20,16 +20,16 @@ import (
 
 const (
 	defaultHTTPSPort = "443"
-	defaultCertFile = "cert.pem"
-	defaultKeyFile = "key.pem"
+	defaultCertFile  = "cert.pem"
+	defaultKeyFile   = "key.pem"
 )
 
 type tlsConfig struct {
-	port string
+	port     string
 	certFile string
-	KeyFile string
-	domain string
-	email string
+	KeyFile  string
+	domain   string
+	email    string
 }
 
 func newTLSConfig() *tlsConfig {
@@ -68,8 +68,14 @@ func (tls *tlsConfig) generateCertificate(hosts []string) error {
 		return fmt.Errorf("failed to generate private key : %s", err.Error())
 	}
 
+	serialNumberLimit := new(big.Int).Lsh(big.NewInt(1), 128)
+	serialNumber, err := rand.Int(rand.Reader, serialNumberLimit)
+	if err != nil {
+		return fmt.Errorf("failed to generate serial number: %s", err.Error())
+	}
+
 	template := x509.Certificate{
-		SerialNumber: big.NewInt(1),
+		SerialNumber: serialNumber,
 		Subject: pkix.Name{
 			Organization: []string{"Localhost Co"},
 		},
@@ -88,7 +94,6 @@ func (tls *tlsConfig) generateCertificate(hosts []string) error {
 			template.DNSNames = append(template.DNSNames, h)
 		}
 	}
-
 
 	derBytes, err := x509.CreateCertificate(rand.Reader, &template, &template, publicKey(priv), priv)
 	if err != nil {
