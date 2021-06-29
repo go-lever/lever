@@ -60,6 +60,8 @@ github.com/gavv/httpexpect v2.0.0+incompatible/go.mod h1:x+9tiU1YnrOvnB725RkpoLv
 github.com/go-check/check v0.0.0-20180628173108-788fd7840127/go.mod h1:9ES+weclKsC9YodN5RgxqK/VD9HM9JsCSh7rNhMZE98=
 github.com/go-lever/encore v0.0.0-20210612141625-2f5463132e31 h1:fqGTDwCj/rbsa6SXFa+jRIue62CP+r4hld15G+NW2no=
 github.com/go-lever/encore v0.0.0-20210612141625-2f5463132e31/go.mod h1:0HMZOQhUzLib/xauGuQbTfEQOqnmzpYcSqHKSEGj/H8=
+github.com/go-lever/encore v0.0.0-20210629083503-6a7e4564a8ed h1:gi7aMH8b5psx1fE+YXbQ56nR8R7Xw1bXDW22hNTfe7I=
+github.com/go-lever/encore v0.0.0-20210629083503-6a7e4564a8ed/go.mod h1:0HMZOQhUzLib/xauGuQbTfEQOqnmzpYcSqHKSEGj/H8=
 github.com/go-redis/redis/v8 v8.5.0/go.mod h1:YmEcgBDttjnkbMzDAhDtQxY9yVA7jMN6PCR5HeMvqFE=
 github.com/gobwas/httphead v0.0.0-20180130184737-2c6c146eadee/go.mod h1:L0fX3K22YWvt/FAX9NnzrNzcI4wNYi9Yku4O0LKYflo=
 github.com/gobwas/httphead v0.0.0-20200921212729-da3d93bc3c58/go.mod h1:L0fX3K22YWvt/FAX9NnzrNzcI4wNYi9Yku4O0LKYflo=

@@ -10,7 +10,7 @@ require (
 	github.com/dgraph-io/badger v1.6.0 // indirect
 	github.com/etcd-io/bbolt v1.3.3 // indirect
 	github.com/gavv/httpexpect v2.0.0+incompatible // indirect
-	github.com/go-lever/encore v0.0.0-20210612141625-2f5463132e31 // indirect
+	github.com/go-lever/encore v0.0.0-20210629083503-6a7e4564a8ed // indirect
 	github.com/gomodule/redigo v1.7.1-0.20190724094224-574c33c3df38 // indirect
 	github.com/hashicorp/go-version v1.2.0 // indirect
 	github.com/iris-contrib/blackfriday v2.0.0+incompatible // indirect
