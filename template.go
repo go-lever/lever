@@ -7,10 +7,10 @@ import (
 
 func (wa *WebApp) FuncMap() template.FuncMap {
 	return template.FuncMap{
-		"img": wa.img,
+		"asset": wa.asset,
 	}
 }
 
-func (wa *WebApp) img(file string) string {
-	return filepath.Join(wa.assetsPath, imgDir, file)
+func (wa *WebApp) asset(path string) string {
+	return filepath.Join(wa.assetsPath, path)
 }
