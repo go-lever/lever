@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"path/filepath"
 
+	"github.com/Masterminds/sprig"
 	"github.com/go-lever/encore"
 	"github.com/kataras/iris/v12"
 )
@@ -34,7 +35,8 @@ func NewWebApp(assetsFS *dirFS, assetPath string, templatesFS *dirFS) *WebApp {
 		iris.HTML(http.FS(webapp.templates()), ".gohtml").
 			Reload(true).
 			Funcs(encoreRenderer.FuncMap()).
-			Funcs(webapp.FuncMap()))
+			Funcs(webapp.FuncMap()).
+			Funcs(sprig.FuncMap()))
 
 	webapp.HandleDir(assetPath, http.FS(webapp.assets()))
 
