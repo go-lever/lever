@@ -63,5 +63,11 @@ func (wa *WebApp) assetsBuild() fs.FS {
 	if wa.devMode {
 		return wa.assetsFS.getDir(buildDir)
 	}
-	return wa.assetsFS.getDirFS(buildDir)
+
+	fsys, err := fs.Sub(wa.assets(), buildDir)
+	if err != nil {
+		panic(err)
+	}
+
+	return fsys
 }

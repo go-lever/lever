@@ -10,23 +10,32 @@ import (
 type App struct {
 	*iris.Application
 	tlsConfig *tlsConfig
-	devMode bool
+	devMode   bool
+	localMode bool
 }
 
-func NewApp() *App{
+func NewApp() *App {
 	return &App{
 		Application: iris.Default(),
-		tlsConfig: newTLSConfig(),
-		devMode: config.DevMode(),
+		tlsConfig:   newTLSConfig(),
+		devMode:     config.DevMode(),
+		localMode:   config.LocalMode(),
 	}
 }
 
-func (app *App) Run(){
+func (app *App) Run() {
+
+	if app.localMode {
+		app.runDev()
+		return
+	}
+
 	if app.devMode {
 		app.runDev()
-	} else {
-		app.runProd()
+		return
 	}
+
+	app.runProd()
 }
 
 func (app *App) runDev() {

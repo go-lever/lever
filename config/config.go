@@ -9,6 +9,13 @@ func DevMode() bool {
 	return true
 }
 
+func LocalMode() bool {
+	if os.Getenv("LEVER_LOCAL") == "true" {
+		return true
+	}
+	return false
+}
+
 func TLSDomain() string {
 	return os.Getenv("LEVER_DOMAIN")
 }
