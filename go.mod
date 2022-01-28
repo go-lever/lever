@@ -15,6 +15,7 @@ require (
 	github.com/gavv/httpexpect v2.0.0+incompatible // indirect
 	github.com/go-lever/encore v0.0.0-20210629083503-6a7e4564a8ed // indirect
 	github.com/gomodule/redigo v1.7.1-0.20190724094224-574c33c3df38 // indirect
+	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/hashicorp/go-version v1.2.0 // indirect
 	github.com/huandu/xstrings v1.3.2 // indirect
 	github.com/imdario/mergo v0.3.12 // indirect
@@ -29,6 +30,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/ryanuber/columnize v2.1.0+incompatible // indirect
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
+	github.com/stretchr/testify v1.7.0
 	github.com/tdewolff/minify/v2 v2.9.17 // indirect
 	github.com/tdewolff/parse/v2 v2.5.17 // indirect
 	github.com/vmihailenco/msgpack/v5 v5.3.4 // indirect
