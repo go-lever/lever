@@ -97,7 +97,7 @@ func (tls *tlsConfig) generateCertificate(hosts []string) error {
 
 	derBytes, err := x509.CreateCertificate(rand.Reader, &template, &template, publicKey(priv), priv)
 	if err != nil {
-		return fmt.Errorf("Failed to create certificate: %v", err)
+		return fmt.Errorf("failed to create certificate: %v", err)
 	}
 
 	//writes the certificate file
