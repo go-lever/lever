@@ -16,10 +16,9 @@ var HTML embed.FS
 func main() {
 
 	webapp := lever.NewWebApp(
-		lever.EmbededDir("public", Assets),
-
+		lever.NewDirFS("public", Assets),
 		"/assets",
-		lever.EmbededDir("templates", HTML))
+		lever.NewDirFS("templates", HTML))
 
 	webapp.Get("/", index)
 
