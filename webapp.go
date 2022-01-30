@@ -11,8 +11,8 @@ import (
 )
 
 const (
-	buildDir = "build"
-	imgDir   = "img"
+	defaultBuildDir = "build"
+	defaultAssetPath = "/assets"
 )
 
 type WebApp struct {
@@ -22,15 +22,27 @@ type WebApp struct {
 	assetsPath  string
 }
 
-func NewWebApp(assetsFS *dirFS, assetPath string, templatesFS *dirFS) *WebApp {
+// WebAppOptions handles the WebApp configuration.
+// WebAppOptions should be used when creating a new WebApp with custom parameters.
+type WebAppOptions struct {
+	AppOptions
+	assetPath string
+}
+
+// NewWebApp creates a new WebApp with the given options
+func NewWebApp(assetsFS *dirFS, templatesFS *dirFS, options *WebAppOptions) *WebApp {
 	webapp := &WebApp{
-		App:         NewApp(),
+		App:         NewApp(&options.AppOptions),
 		assetsFS:    assetsFS,
 		templatesFS: templatesFS,
-		assetsPath:  assetPath,
+		assetsPath:  options.assetPath,
 	}
 
-	encoreRenderer := encore.NewRenderer(webapp.assetsBuild(), filepath.Join(assetPath, buildDir))
+	if options.assetPath == "" {
+		webapp.assetsPath = defaultAssetPath
+	}
+
+	encoreRenderer := encore.NewRenderer(webapp.assetsBuild(), filepath.Join(webapp.assetsPath, defaultBuildDir))
 	webapp.RegisterView(
 		iris.HTML(http.FS(webapp.templates()), ".gohtml").
 			Reload(true).
@@ -38,9 +50,17 @@ func NewWebApp(assetsFS *dirFS, assetPath string, templatesFS *dirFS) *WebApp {
 			Funcs(webapp.FuncMap()).
 			Funcs(sprig.FuncMap()))
 
-	webapp.HandleDir(assetPath, http.FS(webapp.assets()))
+	webapp.HandleDir(webapp.assetsPath, http.FS(webapp.assets()))
 
 	return webapp
+
+}
+
+// NewDefaultWebApp creates a new WebApp with the following default parameters
+// * CORS are disabled
+// * Assets are served on the default /assets path
+func NewDefaultWebApp(assetsFS *dirFS, templatesFS *dirFS) *WebApp {
+	return NewWebApp(assetsFS, templatesFS, &WebAppOptions{})
 }
 
 func (wa *WebApp) templates() fs.FS {
@@ -61,10 +81,10 @@ func (wa *WebApp) assets() fs.FS {
 
 func (wa *WebApp) assetsBuild() fs.FS {
 	if wa.devMode {
-		return wa.assetsFS.getDir(buildDir)
+		return wa.assetsFS.getDir(defaultBuildDir)
 	}
 
-	fsys, err := fs.Sub(wa.assets(), buildDir)
+	fsys, err := fs.Sub(wa.assets(), defaultBuildDir)
 	if err != nil {
 		panic(err)
 	}

@@ -5,6 +5,7 @@ import (
 
 	"github.com/go-lever/lever/config"
 	"github.com/kataras/iris/v12"
+	"github.com/rs/cors"
 )
 
 type App struct {
@@ -14,13 +15,41 @@ type App struct {
 	localMode bool
 }
 
-func NewApp() *App {
-	return &App{
+// AppOptions handles the App configuration.
+// AppOptions should be used when creating a new App with custom parameters like
+// * Cors enabled/disabled
+type AppOptions struct {
+	Cors bool
+}
+
+// NewApp creates a new App with the given options
+func NewApp(options *AppOptions) *App {
+	app := &App{
 		Application: iris.Default(),
 		tlsConfig:   newTLSConfig(),
 		devMode:     config.DevMode(),
 		localMode:   config.LocalMode(),
 	}
+
+	if options.Cors {
+		c := cors.New(cors.Options{
+			AllowedOrigins:   []string{"*"},
+			AllowCredentials: true,
+			AllowedMethods:   []string{"HEAD", "GET", "POST", "PUT", "DELETE"},
+			// Enable Debugging only in dev mode.
+			Debug: app.devMode,
+		})
+		app.WrapRouter(c.ServeHTTP)
+	}
+
+	return app
+	
+}
+
+// NewDefaultApp creates a new App with the following default parameters
+// * CORS are disabled
+func NewDefaultApp() *App {
+	return NewApp(&AppOptions{})
 }
 
 func (app *App) Run() {

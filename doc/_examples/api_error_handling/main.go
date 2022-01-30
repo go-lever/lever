@@ -9,7 +9,9 @@ import (
 )
 
 func main() {
-	app := lever.NewApp()
+	app := lever.NewApp(&lever.AppOptions{
+		Cors: true,
+	})
 	app.Get("/error-response", handleError)
 	app.Get("/problem-response", handleProblem)
 
