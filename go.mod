@@ -24,6 +24,7 @@ require (
 	github.com/json-iterator/go v1.1.11 // indirect
 	github.com/kataras/iris/v12 v12.2.0-alpha2.0.20210611081136-a3b5797e546f // indirect
 	github.com/klauspost/compress v1.13.0 // indirect
+	github.com/lib/pq v1.10.4
 	github.com/microcosm-cc/bluemonday v1.0.10 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
