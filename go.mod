@@ -14,16 +14,15 @@ require (
 	github.com/etcd-io/bbolt v1.3.3 // indirect
 	github.com/gavv/httpexpect v2.0.0+incompatible // indirect
 	github.com/go-lever/encore v0.0.0-20210629083503-6a7e4564a8ed // indirect
-	github.com/gomodule/redigo v1.7.1-0.20190724094224-574c33c3df38 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
-	github.com/hashicorp/go-version v1.2.0 // indirect
 	github.com/huandu/xstrings v1.3.2 // indirect
 	github.com/imdario/mergo v0.3.12 // indirect
 	github.com/iris-contrib/blackfriday v2.0.0+incompatible // indirect
 	github.com/iris-contrib/pongo2 v0.0.1 // indirect
 	github.com/json-iterator/go v1.1.11 // indirect
+	github.com/kataras/iris v0.0.2
 	github.com/kataras/iris/v12 v12.2.0-alpha2.0.20210611081136-a3b5797e546f // indirect
-	github.com/klauspost/compress v1.13.0 // indirect
+	github.com/klauspost/compress v1.14.2 // indirect
 	github.com/lib/pq v1.10.4
 	github.com/microcosm-cc/bluemonday v1.0.10 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
@@ -31,6 +30,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/rs/cors v1.8.2 // indirect
 	github.com/ryanuber/columnize v2.1.0+incompatible // indirect
+	github.com/santhosh-tekuri/jsonschema/v5 v5.0.0
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
 	github.com/stretchr/testify v1.7.0
 	github.com/tdewolff/minify/v2 v2.9.17 // indirect
