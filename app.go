@@ -64,7 +64,10 @@ func (app *App) Run() {
 		return
 	}
 
-	app.runProd()
+	if !app.devMode && app.tlsConfig.domain == "" {
+		app.runDev()
+	}
+	
 }
 
 func (app *App) runDev() {
