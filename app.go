@@ -52,6 +52,8 @@ func NewDefaultApp() *App {
 	return NewApp(&AppOptions{})
 }
 
+// Run runs the app with TLS (https). Serving http request through https is the default mode. 
+// When the app is ran locally or on a remote server that doesn't have a public domain name, a certificate is generated automatically
 func (app *App) Run() {
 
 	if app.localMode {
@@ -67,7 +69,8 @@ func (app *App) Run() {
 	if !app.devMode && app.tlsConfig.domain == "" {
 		app.runDev()
 	}
-	
+
+	app.runProd()
 }
 
 func (app *App) runDev() {
