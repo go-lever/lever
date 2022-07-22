@@ -73,6 +73,12 @@ func (app *App) Run() {
 	app.runProd()
 }
 
+//RunNoTLS runs the app on http, without TLS enable. This mode should be only used in particular contexts such as running the app
+//on a server that doesn't have any domain name or if the incoming http requests are catch by a proxy which already handle TLS.
+func (app *App) RunNoTLS(hostPort string) {
+	app.Application.Listen(hostPort)
+}
+
 func (app *App) runDev() {
 	app.tlsConfig.generateDevCertificate()
 	app.Application.Run(iris.TLS(fmt.Sprintf(":%s", app.tlsConfig.port), app.tlsConfig.certFile, app.tlsConfig.KeyFile))
